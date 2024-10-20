@@ -7,10 +7,11 @@ def solution(input: int) -> str:
     stack = deque()
 
     while remain > 0:
-        stack.append(remain % 2)
+        stack.append(str(remain % 2))
         remain //= 2
+    stack.reverse()
 
-    return "".join(map(str,reversed(stack)))
+    return "".join(stack)
 
 if __name__ == "__main__":
     assert solution(10) == "1010"
