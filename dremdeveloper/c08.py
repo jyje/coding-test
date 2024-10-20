@@ -5,7 +5,7 @@
 
 from collections import deque
 
-def solution(s: str) -> bool:
+def solution_1(s: str) -> bool:
     if s == "":
         return False
 
@@ -26,6 +26,23 @@ def solution(s: str) -> bool:
         del data[index_open]
 
     return True
+
+def solution(s: str) -> bool:
+    if s == "":
+        return False
+
+    stack = deque()
+
+    for w in s:
+        if w == "(":
+            stack.append(w)
+        elif w == ")":
+            if not stack or stack.pop() != "(":
+                return False
+        else:
+            return False
+
+    return len(stack) == 0
 
 if __name__ == "__main__":
     assert solution("(())()") == True
